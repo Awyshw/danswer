@@ -36,7 +36,8 @@ def get_default_llm(
         except ConfigNotFoundError:
             # if no API key is found, assume this model doesn't need one
             pass
-
+    
+    # TODO: If add self-host llm, can do it from here.
     return get_llm_from_model(
         model=INTERNAL_MODEL_VERSION,
         api_key=api_key,

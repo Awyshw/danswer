@@ -58,6 +58,7 @@ def semantic_reranking(
 ) -> list[InferenceChunk]:
     model_max = 12  # These are just based on observations from model selection
     model_min = -12
+    # default model: cross-encoder/ms-marco-xxx-xxx
     cross_encoders = get_default_reranking_model_ensemble()
     sim_scores = [
         encoder.predict([(query, chunk.content) for chunk in chunks])  # type: ignore

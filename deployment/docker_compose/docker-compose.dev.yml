@@ -14,7 +14,7 @@ services:
       - index
     restart: always
     ports:
-      - "8080:8080"
+      - "18080:8080"
     environment:
       - INTERNAL_MODEL_VERSION=${INTERNAL_MODEL_VERSION:-openai-chat-completion}
       - GEN_AI_MODEL_VERSION=${GEN_AI_MODEL_VERSION:-gpt-3.5-turbo}
@@ -89,7 +89,7 @@ services:
       - api_server
     restart: always
     environment:
-      - INTERNAL_URL=http://api_server:8080
+      - INTERNAL_URL=http://api_server:18080
       - WEB_DOMAIN=${WEB_DOMAIN:-}
       - DISABLE_AUTH=${DISABLE_AUTH:-True}
       - OAUTH_NAME=${OAUTH_NAME:-}

@@ -53,6 +53,12 @@ VERIFIED_MODELS = {
     # https://huggingface.co/deepset/deberta-v3-large-squad2
     # Model provided with no modifications
     DanswerGenAIModel.TRANSFORMERS.value: ["deepset/deberta-v3-large-squad2"],
+    
+    # TODO: add your own model.
+    # Self host LLM, Change it according to your own model name
+    # The vicuna project is used here
+    DanswerGenAIModel.LLM_SELF_HOSTED.value: ["vicuna"],
+    DanswerGenAIModel.LLM_SELF_HOSTED_CHAT.value: ["vicuna"],
 }
 
 # Sets the internal Danswer model class to use

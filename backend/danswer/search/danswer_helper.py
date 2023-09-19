@@ -28,8 +28,10 @@ def count_unk_tokens(text: str, tokenizer: AutoTokenizer) -> int:
 
 @log_function_time()
 def query_intent(query: str) -> tuple[SearchType, QueryFlow]:
-    tokenizer = get_default_intent_model_tokenizer()
+    # danswer/intent-model， Multiclass classifier on top of distilbert-base-uncased
+    tokenizer = get_default_intent_model_tokenizer()  
     intent_model = get_default_intent_model()
+
     model_input = tokenizer(query, return_tensors="tf", truncation=True, padding=True)
 
     predictions = intent_model(model_input)[0]
@@ -78,6 +80,8 @@ def recommend_search_flow(
     non_stopword_percent = len(non_stopwords) / len(words)
 
     # UNK tokens -> suggest Keyword (still may be valid QA)
+    # Default tokenizer: thenlper/gte-small, General Text Embedding,
+    # The GTE models are trained by Alibaba DAMO Academy. 
     if count_unk_tokens(query, get_default_tokenizer()) > 0:
         if not keyword:
             heuristic_search_type = SearchType.KEYWORD
@@ -90,6 +94,7 @@ def recommend_search_flow(
             message = "Stopwords in query"
 
     # Model based decisions
+    # Query Intent: Model Search type —— keyword/semantic, flow —— search/qa
     model_search_type, flow = query_intent(query)
     if not message:
         if model_search_type == SearchType.SEMANTIC and keyword:

@@ -96,3 +96,13 @@ API_TYPE_OPENAI = os.environ.get("API_TYPE_OPENAI", "").lower()
 API_VERSION_OPENAI = os.environ.get("API_VERSION_OPENAI", "")
 # Deployment ID used interchangeably with "engine" parameter
 AZURE_DEPLOYMENT_ID = os.environ.get("AZURE_DEPLOYMENT_ID", "")
+
+#####
+# OpenAI For Local
+#####
+# API_MODEL_NAME according: https://github.com/lm-sys/FastChat/blob/b49d789417eba974a6cfd3855f4293bfeeeeb49f/docs/openai_api.md
+# GEN_AI_API_KEY
+API_MODEL_NAME = os.environ.get("API_MODEL_NAME", "").lower()  # vicuna-7b-v1.3/chatglm2-6b
+# API_BASE_OPENAI is same with Azure.
+    ## API_BASE_OPENAI = "http://localhost:8000/v1"
+# API_TYPE_OPENAI = "LOCAL"

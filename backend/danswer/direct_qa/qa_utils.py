@@ -197,6 +197,7 @@ def extract_quotes_from_completed_token_stream(
     answer, quotes = process_answer(model_output, context_chunks)
     if answer:
         logger.info(answer)
+        logger.debug(quotes)
     elif model_output:
         logger.warning("Answer extraction from model output failed.")
 
@@ -234,7 +235,12 @@ def process_model_tokens(
             if is_json_prompt and len(model_output) > 20:
                 logger.warning("LLM did not produce json as prompted")
                 found_answer_end = True
-
+            continue
+        elif not found_answer_start and not model_output.startswith("{") and len(model_output) > 20:  # TODO: When model_output is not json.
+            logger.warning("LLM did not produce json, So process as text.")
+            found_answer_start = True
+            is_json_prompt = False
+            yield DanswerAnswerPiece(answer_piece=model_output)
             continue
 
         if found_answer_start and not found_answer_end:

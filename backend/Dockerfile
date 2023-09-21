@@ -54,5 +54,8 @@ WORKDIR /app
 
 ENV PYTHONPATH /app
 
+ARG https_proxy="http://10.35.47.201:10001"
+ARG http_proxy="http://10.35.47.201:10001"
+
 # By default this container does nothing, it is used by api server and background which specify their own CMD
 CMD ["tail", "-f", "/dev/null"]

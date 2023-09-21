@@ -260,6 +260,7 @@ class QABlock(QAModel):
     ) -> AnswerQuestionStreamReturn:
         trimmed_context_docs = _tiktoken_trim_chunks(context_docs)
         prompt = self._qa_handler.build_prompt(query, trimmed_context_docs)
+        logger.debug(prompt)
         tokens = self._llm.stream(prompt)
         yield from self._qa_handler.process_llm_token_stream(
             tokens, trimmed_context_docs

@@ -62,8 +62,8 @@ class DanswerGenAIModel(str, Enum):
     REQUEST = "request-completion"
     TRANSFORMERS = "transformers"
 
-    LLM_SELF_HOSTED = "llm-completion"
-    LLM_SELF_HOSTED_CHAT = "llm-chat-completion"
+    OPENAI_LOCAL_LLM = "openai-local-completion"
+    OPENAI_LOCAL_LLM_CHAT = "openai-local-chat-completion"
 
 
 class ModelHostType(str, Enum):
@@ -75,8 +75,8 @@ class ModelHostType(str, Enum):
     # https://medium.com/@yuhongsun96/host-a-llama-2-api-on-gpu-for-free-a5311463c183
     COLAB_DEMO = "colab-demo"
     # TODO support for Azure, AWS, GCP GenAI model hosting
-    # self hosted.
-    SELF_HOSTED = "self-hosted"
+    # Local llm for Openai.
+    OPENAI_LOCAL = "openai-local"
 
 
 class QAFeedbackType(str, Enum):

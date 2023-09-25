@@ -57,8 +57,8 @@ VERIFIED_MODELS = {
     # TODO: add your own model.
     # Self host LLM, Change it according to your own model name
     # The vicuna project is used here
-    DanswerGenAIModel.LLM_SELF_HOSTED.value: ["vicuna"],
-    DanswerGenAIModel.LLM_SELF_HOSTED_CHAT.value: ["vicuna"],
+    # DanswerGenAIModel.OPENAI_LOCAL_LLM.value: ["openai_local_llm"],
+    # DanswerGenAIModel.OPENAI_LOCAL_LLM_CHAT.value: ["openai_local_llm"],
 }
 
 # Sets the internal Danswer model class to use

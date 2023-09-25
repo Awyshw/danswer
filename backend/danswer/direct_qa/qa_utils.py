@@ -235,6 +235,9 @@ def process_model_tokens(
             if is_json_prompt and len(model_output) > 20:
                 logger.warning("LLM did not produce json as prompted")
                 found_answer_end = True
+            else:
+                first_token_output = re.sub(r"\s", "", model_output)[11:]
+                yield DanswerAnswerPiece(answer_piece=first_token_output)
             continue
         elif not found_answer_start and not model_output.startswith("{") and len(model_output) > 20:  # TODO: When model_output is not json.
             logger.warning("LLM did not produce json, So process as text.")
